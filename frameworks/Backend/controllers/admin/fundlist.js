@@ -1,8 +1,8 @@
 const Fund = require("../../models/fund.model");
 
-const getRequestedFunds = (req, res, next) => {
+const getRequestedFunds = async (req, res, next) => {
   try {
-    const funds = Fund.find({ status: "pending" });
+    const funds = await Fund.find({ status: "pending" });
     res.status(200).json(funds);
   } catch (err) {
     if (!err.statusCode) {
