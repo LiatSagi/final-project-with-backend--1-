@@ -12,9 +12,9 @@ const getRequestedFunds = async (req, res, next) => {
   }
 };
 
-const getApprovedFunds = (req, res, next) => {
+const getApprovedFunds = async (req, res, next) => {
   try {
-    const funds = Fund.find({ status: "approved" });
+    const funds = await Fund.find({ status: "approved" });
     res.status(200).json(funds);
   } catch (err) {
     if (!err.statusCode) {
