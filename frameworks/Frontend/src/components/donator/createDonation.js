@@ -66,22 +66,23 @@ export default function CreateDonation() {
 
   useEffect(() => {
     if (userId) {
-      console.log("Fetching user details for user ID:", userId);
-      requesterProfile(userId)
-        .then((res) => {
-          console.log("User details:", res.data);
-          setEmail(res.data.requester.email);
-          setContactNumber("0" + res.data.requester.contactNumber);
-        })
-        .catch((error) => {
-          console.error("Failed to fetch user details:", error);
-        });
+    console.log("Fetching user details for user ID:", userId); // Check if the user ID is updated
+    requesterProfile(userId)
+      .then((res) => {
+        console.log("User details:", res.data); // Check if user details are retrieved correctly
+        setEmail(res.data.requester.email);
+        setContactNumber("0" + res.data.requester.contactNumber);
+      })
+      .catch((error) => {
+        console.error("Failed to fetch user details:", error);
+      });
     }
   }, [userId]);
 
   // Handle file upload
   const fileUpload = (files) => {
     setDonationImage(files.base64);
+
   };
 
   useEffect(() => {
@@ -126,10 +127,8 @@ export default function CreateDonation() {
     }
 
     setLoading(true);
+    console.log(donationImage);
     const userID = userId;
-
-    console.log(donationEndDate);
-    console.log(typeof donationEndDate);
 
     const donation = {
       userID,
@@ -187,16 +186,8 @@ export default function CreateDonation() {
     <>
       <NavBar />
       {loading ? (
-        <div
-          style={{
-            position: "absolute",
-            top: "50%",
-            bottom: 0,
-            left: 0,
-            right: 0,
-            margin: "auto",
-          }}
-        >
+        // Show loading spinner while loading
+        <div style={{ position: "absolute", top: "50%", bottom: 0, left: 0, right: 0, margin: "auto",}}>
           <LoadingSpinner />
         </div>
       ) : (
@@ -237,7 +228,7 @@ export default function CreateDonation() {
                         required
                       />
                     </div>
-
+               
                     <div className="input-group input-group mb-3 input-group-outline mb-2">
                       <input
                         type="text"
@@ -406,15 +397,11 @@ export default function CreateDonation() {
                       ></textarea>
                     </div>
                     <div>הוספת תמונה</div>
-                    <FileBase64 onDone={(files) => fileUpload(files)} />
+                      <FileBase64 onDone={(files) => fileUpload(files)} />
                     <div className="text-center">
                       {wantedItems.length > 0 && (
-                        <button
-                          type="submit"
-                          className="btn btn-secondary"
-                          onClick={() => setSubmitButtonClicked(true)}
-                        >
-                          יצירת בקשה לתרומה
+                        <button type="submit" className="btn btn-secondary" onClick={() => setSubmitButtonClicked(true)}>
+                         יצירת בקשה לתרומה
                         </button>
                       )}
                     </div>

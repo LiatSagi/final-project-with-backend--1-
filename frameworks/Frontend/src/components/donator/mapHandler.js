@@ -17,9 +17,9 @@ export const initializeMap = (setLocation, setMapInitialized) => {
 
   // Define a custom location icon
   const locationIcon = L.icon({
-    iconUrl: 'location-icon.png',
-    iconSize: [32, 32], // Set the icon size
-    iconAnchor: [16, 32], // Set the icon anchor
+    iconUrl: 'https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/images/marker-icon.png',
+    iconSize: [22, 22], // Set the icon size
+    iconAnchor: [16, 12], // Set the icon anchor
   });
 // Initialize a variable to hold the location marker
   let locationMarker = null;
@@ -33,11 +33,17 @@ export const initializeMap = (setLocation, setMapInitialized) => {
       const country = results[0].properties.address.country;
     // Check if the selected location is in Israel
       if (country !== 'Israel' && country !== "ישראל" && country !== "השטחים הפלסטיניים") {
-        alert('הכתובת שבחרת לא נמצאת בישראל. אנא בחר כתובת בישראל.');
+        alert("הכתובת שנבחרה אינה בישראל. אנא בחר כתובת בישראל.");
         return;
       }
+
       // Parse the address components
       const splitAddress = address.split(','); // Split the address by comma
+      // Check if the splitAddress array has less than 2 items
+      if (splitAddress.length < 2) {
+        alert('אנא בחר כתובת עם לפחות 2 רכיבים (לדוגמה: רחוב ועיר).');
+        return;
+      }
       const city = splitAddress[0].trim();
       const street = splitAddress[1].trim();
       const area = splitAddress[2].trim();

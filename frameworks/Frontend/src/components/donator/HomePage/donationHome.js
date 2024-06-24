@@ -207,6 +207,7 @@ export default function DonationHome() {
                         <li
                           onClick={() => {
                             setSelectedCategory("");
+                            setSelectedLocation("");
                             setSortFilterDropdownOpen(!sortFilterDropdownOpen);
                           }}
                         >
@@ -216,6 +217,7 @@ export default function DonationHome() {
                           <li
                             key={index}
                             onClick={() => {
+                              setSelectedLocation("");
                               setSelectedCategory(category);
                               setSortFilterDropdownOpen(
                                 !sortFilterDropdownOpen
@@ -237,6 +239,7 @@ export default function DonationHome() {
                       <ul className="dropdown-menu">
                         <li
                           onClick={() => {
+                            setSelectedCategory("");
                             setSelectedLocation("");
                             setSortFilterDropdownOpen(!sortFilterDropdownOpen);
                           }}
@@ -247,6 +250,7 @@ export default function DonationHome() {
                           <li
                             key={index}
                             onClick={() => {
+                              setSelectedCategory("");
                               setSelectedLocation(location);
                               setSortFilterDropdownOpen(
                                 !sortFilterDropdownOpen

@@ -35,7 +35,7 @@ export default function DonateFund({ organizationID, fundID, fund }) {
         .then((res) => {
           setCardDetails({});
           setDonationAmount();
-          swal("התרומה הצליחה", "", "success")
+          swal("התרומה עברה בהצלחה", "", "success")
             .then((willLogin) => {
               if (willLogin) {
                 window.location.reload();
@@ -63,7 +63,8 @@ export default function DonateFund({ organizationID, fundID, fund }) {
             placeholder="הכנס סכום לתרומה"
             value={donationAmount}
             onChange={(e) => {
-              setDonationAmount(e.target.value);
+              if (/^\d*$/.test(e.target.value))
+                setDonationAmount(e.target.value);
             }}
           />
         </div>
@@ -93,6 +94,7 @@ export default function DonateFund({ organizationID, fundID, fund }) {
             type="text"
             className="form-control"
             placeholder="מספר כרטיס בעל 16 ספרות"
+            maxLength={19}
             value={cardDetails["cardNumber"] }
             onChange={(e) => {
               setCardDetails({
@@ -126,9 +128,24 @@ export default function DonateFund({ organizationID, fundID, fund }) {
                   if (value.length > 5) {
                     value = value.substr(0, 5);
                   }
+                  // Validate the date
+                  const [month, year] = value.split('/').map(num => parseInt(num, 10));
+                  const currentYear = new Date().getFullYear() % 100; // Get last two digits of the current year
+                  const currentMonth = new Date().getMonth() + 1; // JavaScript months are 0-11
+
+                  let errorMessage = '';
+                  if (!isNaN(month) && !isNaN(year)) {
+                    if (year < currentYear || (year === currentYear && month < currentMonth)) {
+                      errorMessage = 'תוקף הכרטיס חייב להיות גדול מהתאריך של היום';
+                    }
+                  }
                   setCardDetails({
                     ...cardDetails,
                     cardExpiry: value,
+                  });
+                  setFormErrors({
+                    ...formErrors,
+                    cardExpiry: errorMessage,
                   });
                 }}
               />
@@ -147,8 +164,12 @@ export default function DonateFund({ organizationID, fundID, fund }) {
                 placeholder="***"
                 value={cardDetails["cvv"]}
                 onChange={(e) => {
-                  setCardDetails({ ...cardDetails, cvv: e.target.value });
+                  if (/^\d{0,3}$/.test(e.target.value))
+                    setCardDetails({ ...cardDetails, cvv: e.target.value });
                 }}
+                maxLength="3"
+                pattern="\d{3}"
+                required
               />
             </div>
             <div className="text-danger form-label mb-3">{formErrors.cvv}</div>

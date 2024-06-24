@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useParams,useNavigate } from "react-router-dom";
 import {
   getApprovedRequests,
   getOneDonation,
@@ -20,6 +20,7 @@ export default function SeeRequests() {
   const [donation, setDonation] = useState([]);
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
+  const navigate = useNavigate();
 
   
   useEffect(() => {
@@ -130,6 +131,7 @@ const generateReport = (requests) => {
 
   return (
     <div dir="rtl" style={{ overflow: "hidden" }}>
+      <i className="bi bi-arrow-left-circle fs-4 cursor-pointer" onClick={() => navigate(-1)}> הקודם</i>
       <h3 style={{ marginRight: 50, marginTop: 10, marginBottom: 30, display: "flex", flexDirection: "column", alignItems: "center" }}>
         בקשות עבור תרומה - {donation.donationTitle}
       </h3>

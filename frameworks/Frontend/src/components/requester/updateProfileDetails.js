@@ -10,7 +10,11 @@ import { requesterProfile, updatePassword, updateProfile } from '../../api/reque
 
 export default function UpdateProfileDetails() {
   const { userId } = useParams();
-  const [userData, setUserData] = useState({});
+  const [userData, setUserData] = useState({
+    firstName: '',
+    lastName: '',
+    contactNumber: '',
+    email: ''});
   const [passData, setPassData] = useState({});
   const navigate = useNavigate();
   const [changePassword, setChangePassword] = useState(false);
@@ -19,7 +23,12 @@ export default function UpdateProfileDetails() {
   useEffect(() => {
     requesterProfile(userId)
       .then((res) => {
-        setUserData(res.data.requester)
+         setUserData({
+          firstName: res.data.requester.firstName || '',
+          lastName: res.data.requester.lastName || '',
+          contactNumber:"0"+ res.data.requester.contactNumber || '',
+          email: res.data.requester.email || ''
+        });
       })
   }, []);
   // Handle profile update form submission
@@ -74,6 +83,8 @@ export default function UpdateProfileDetails() {
       <div className='container' dir="rtl">
         <h4 className="pt-3 ms-4">הגדרות חשבון</h4>
         <hr className='hr-request-fund mx-4' />
+        <i className="bi bi-arrow-left-circle fs-4 cursor-pointer"
+          onClick={() => navigate(-1)}> הקודם</i>
         <div className="container d-flex justify-content-center pt-4 pb-5">
           <div className="card z-index-0 fadeIn3 fadeInBottom ">
             <div className="card-body">
@@ -117,8 +128,10 @@ export default function UpdateProfileDetails() {
                     <div className="row input-group input-group-outline mb-4">
                       <label htmlFor="form-control">מספר טלפון</label>
                       <input type="text"
+                              // setUserData({ ...userData, "contactNumber": "0"+ res.data.requester.contactNumber})
+
                         className="form-control"
-                        value={"0" + userData.contactNumber}
+                        value={userData.contactNumber}
                         onChange={(e) => { setUserData({ ...userData, "contactNumber": e.target.value }) }}
                       />
                     </div>

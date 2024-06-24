@@ -81,11 +81,16 @@ export default function RequesterSignIn() {
       <nav>
         <NavBar />
       </nav>
-      <div className="container d-flex justify-content-center pt-5 pb-5" dir="rtl">
+      <div
+        className="container d-flex justify-content-center pt-5 pb-5"
+        dir="rtl"
+      >
         <div className="card card-signin z-index-0 fadeIn3 fadeInBottom ">
           <form className="form-control p-5" onSubmit={handleSubmit}>
-            <p className="h3 fw-bold text-center mb-2 pb-4 border-bottom">התחבר</p>
-             {/* Email input */}
+            <p className="h3 fw-bold text-center mb-2 pb-4 border-bottom">
+              התחבר
+            </p>
+            {/* Email input */}
             <div className="input-group input-group-outline mb-4 pt-4 ps-4">
               <input
                 type="email"

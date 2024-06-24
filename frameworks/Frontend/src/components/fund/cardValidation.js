@@ -1,5 +1,5 @@
 var errors = {};
-
+const namePattern = /^[a-zA-Zא-ת]+[a-zA-Zא-ת\s]*$/;
 const cardNumberPattern = /^\d{4}\s\d{4}\s\d{4}\s\d{4}$/;
 const cardExpiryPattern = /^(0[1-9]|1[0-2])\/?([0-9]{2})$/;
 const cardCvvPattern = /^[0-9]{3,4}$/;
@@ -9,6 +9,8 @@ export const cardValidation = (values) => {
 
     if (!values.name) {
         errors.name = 'Name is required';
+    } else if (!namePattern.test(values.name)) {
+        errors.name = 'Name can only contain letters and spaces';
     }
 
     if (!values.cardNumber) {

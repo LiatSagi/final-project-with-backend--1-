@@ -1,13 +1,8 @@
 # Instant Giving - Frontend
 
-## Group Details
+## Watch the Demo Video
 
- Name     
- ------------- 
- Liat Sagi 
- Liran Meirovich 
- Phylis Mian
-
+[Watch the demo video on YouTube](https://youtu.be/RK2qnDy-K1M)
 
 ## Project Description
 
@@ -25,9 +20,9 @@ NodeJS - JS Runtime for the backend
 ### Running the project
 
 1. Navigate to the project directory.\
-2.Install nodemodules by entering `npm install`.\
+2. Install nodemodules by entering `npm install --force`.\
 3. Make sure port 3000 is free.\
-4.After installation is success enter `npm start`
+4. After installation is success enter `npm start`
 
 
 
