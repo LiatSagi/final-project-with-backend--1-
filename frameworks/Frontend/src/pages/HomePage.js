@@ -100,24 +100,22 @@ export default function HomePage() {
 
          {/* Urgent donations section */}
         <div className="container mt-5" dir="rtl">
-            {mostUrgentDonations.length > 0 && (
-                <h3 className="d-flex justify-content-center mb-4"> תרומות ציוד דחופות ביותר</h3>
-             )}
-                <div className="row d-flex justify-content-center">
-                {loading ? (
+            {mostUrgentDonations.length === 0 ?(
                     <>{""}</>
                 ) : (
                     <>
-                        {mostUrgentDonations.map(donation => (
-                            <div className="col-3h" key={donation._id}>
-                                <Link to={`/donator/view/${donation._id}`}>
-                                    <DonationHomeCard donation={donation} />
-                                </Link>
-                            </div>
-                        ))}
+                        <div className="row  d-flex justify-content-center">
+                            <h3 className="d-flex justify-content-center mb-4"> תרומות ציוד דחופות ביותר</h3>
+                            {mostUrgentDonations.map(donation => (
+                                <div className="justify-content-center col col-xxl-3h col-xl-4 col-lg-5 col-md-12 col-sm-12 h-100" key={donation._id}>
+                                    <Link to={`/donator/view/${donation._id}`}>
+                                        <DonationHomeCard donation={donation} />
+                                    </Link>
+                                </div>
+                            ))}
+                        </div>
                     </>
                 )}
-            </div>
         </div>
         {/* Display most urgent funds */}
         <div className="container mt-5" dir="rtl">

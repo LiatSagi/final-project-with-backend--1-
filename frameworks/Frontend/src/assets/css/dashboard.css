@@ -2403,7 +2403,10 @@ progress {
     flex: 0 0 auto;
     width: 25%;
   }
-
+  .col-xxl-3h {
+    flex: 0 0 auto;
+    width: 28%;
+  }
   .col-xxl-4 {
     flex: 0 0 auto;
     width: 33.333333%;
