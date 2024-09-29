@@ -1,3 +1,6 @@
+## Watch the Demo Video
+[Watch the demo video on YouTube](https://youtu.be/RK2qnDy-K1M)
+
 # Instant-Giving
 This repository contains the code for a web application that facilitates donations of items to private individuals or organizations. The application is built using Node.js for the backend and React.js for the frontend.
 Table of Contents
@@ -61,7 +64,4 @@ Liran Meirovich - https://github.com/LiranMeirovich
 
 ## Project status
 Currently we have stopped work on the project, if someone is interested to continue on and deploy the website it could do wonders, in that case contact us Liranmeirovich@gmail.com\
-We also have an app that is currently in the final stages of development by https://github.com/Phylis555
-
-## Watch the Demo Video
-[Watch the demo video on YouTube](https://youtu.be/RK2qnDy-K1M)
+We also have a mobile version at https://github.com/Phylis555
