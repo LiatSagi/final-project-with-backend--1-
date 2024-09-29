@@ -24,8 +24,7 @@ These instructions will help you set up the project on your local machine for de
 
 Before you begin, make sure you have the following software installed on your system:
 
-- Node.js (version X.X.X or later)
-- npm (version X.X.X or later)
+- Node.js (version 20.11.1 or later)
 
 ### Installation
 
